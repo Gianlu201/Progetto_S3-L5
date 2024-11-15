@@ -1,3 +1,4 @@
+/* Questo array viene usato per gli esercizi. Non modificarlo. */
 const movies = [
   {
     Title: 'The Lord of the Rings: The Fellowship of the Ring',
@@ -775,12 +776,41 @@ halfTree(5);
   *****
 
 */
-console.log('ESERCIZIO 29');
+console.log('ESERCIZIO 28');
+
+function tree(num) {
+  switch (num) {
+    case 0:
+      return;
+      break;
+    case 1:
+      return console.log('*');
+      break;
+    default:
+      for (let i = 0; i < num; i++) {
+        let row = '*';
+        for (let j = 1; j <= i; j++) {
+          row += '**';
+        }
+        let space = '';
+
+        const index = num - i - 1;
+        for (let k = 0; k < index; k++) {
+          space += ' ';
+        }
+
+        row = space + row + space;
+        console.log(row);
+      }
+      break;
+  }
+}
+
+tree(10);
 
 console.log('------------------------------');
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
-
-/* Questo array viene usato per gli esercizi. Non modificarlo. */
+console.log('ESERCIZIO 29');

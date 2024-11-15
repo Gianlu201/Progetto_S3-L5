@@ -814,3 +814,27 @@ console.log('------------------------------');
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
 console.log('ESERCIZIO 29');
+
+function isItPrime(num) {
+  const numbersArr = [];
+  for (let i = 0; i < num; i++) {
+    numbersArr.push(i + 1);
+  }
+
+  const divisori = numbersArr.filter((element) => {
+    return num % element === 0;
+  });
+
+  if (divisori.length === 2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const verifyNumber = 11;
+if (isItPrime(verifyNumber)) {
+  console.log(`Il numero ${verifyNumber} è un numero primo`);
+} else {
+  console.log(`Il numero ${verifyNumber} non è un numero primo`);
+}

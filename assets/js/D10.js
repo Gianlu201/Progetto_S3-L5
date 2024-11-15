@@ -310,7 +310,7 @@ function isThisAnEmail(str) {
   if (str.length > 7) {
     const indexAt = str.indexOf('@');
     const indexDot = str.indexOf('.', indexAt);
-    if (indexAt && indexDot > indexAt) {
+    if (indexAt > 0 && indexDot > indexAt) {
       let lastCharacters = false;
       let mailService = false;
       if (str.slice(indexDot + 1).length >= 2) {
@@ -333,6 +333,20 @@ console.log(email);
 console.log(isThisAnEmail(email));
 
 // altro modo è utilizzare la regex
+
+function isThisAnEmailRegEx(str) {
+  if (myRegEx.test(str)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const myRegEx = /^[A-z0-9\.\+_-]+@[A-z0-9\._-]+\.[A-z]{2,6}$/;
+
+console.log('Es6 con regex:');
+console.log(isThisAnEmailRegEx(email));
+
 console.log('------------------------------');
 
 /* ESERCIZIO 7

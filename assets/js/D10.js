@@ -131,7 +131,7 @@ REGOLE
 */
 console.log('ESERCIZIO A');
 
-const sum = 10 + 20;
+let sum = 10 + 20;
 console.log(sum);
 
 console.log('------------------------------');
@@ -141,7 +141,7 @@ console.log('------------------------------');
 */
 console.log('ESERCIZIO B');
 
-const random = Math.floor(Math.random() * 21);
+let random = Math.floor(Math.random() * 21);
 console.log(random);
 
 console.log('------------------------------');
@@ -333,7 +333,6 @@ console.log(email);
 console.log(isThisAnEmail(email));
 
 // altro modo è utilizzare la regex
-
 function isThisAnEmailRegEx(str) {
   if (myRegEx.test(str)) {
     return true;
@@ -475,9 +474,11 @@ const myPhone = {
 };
 
 function deleteProp(obj, str) {
-  delete obj[`${str}`];
+  const newObj = { ...obj };
 
-  return obj;
+  delete newObj[str];
+
+  return newObj;
 }
 
 console.log(deleteProp(myPhone, 'storage'));
@@ -634,7 +635,7 @@ function removeIndex(arr, index) {
   return arr;
 }
 
-console.log(removeIndex(movies, 1));
+// console.log(removeIndex(movies, 1));
 
 console.log('------------------------------');
 
@@ -795,7 +796,7 @@ console.log('ESERCIZIO 28');
 function tree(num) {
   switch (num) {
     case 0:
-      return;
+      return console.log('Lo zero non va bene');
       break;
     case 1:
       return console.log('*');

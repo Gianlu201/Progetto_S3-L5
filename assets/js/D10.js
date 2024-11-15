@@ -216,40 +216,146 @@ console.log(me);
 console.log('------------------------------');
 
 // Funzioni
+console.log('******************************');
+console.log('**** ESERCIZI FUNZIONI *******');
+console.log('******************************');
 
 /* ESERCIZIO 1
   Crea una funzione chiamata "dice": deve generare un numero casuale tra 1 e 6.
 */
 console.log('ESERCIZIO 1');
 
+function dice() {
+  return Math.floor(Math.random() * 6) + 1;
+}
+
+console.log(dice());
+
+console.log('------------------------------');
+
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
 */
+console.log('ESERCIZIO 2');
+
+function whoIsBigger(num1, num2) {
+  return Math.max(num1, num2);
+}
+
+console.log(whoIsBigger(10, 1));
+
+console.log('------------------------------');
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
 
   Es.: splitMe("I love coding") => ritorna ["I", "Love", "Coding"]
 */
+console.log('ESERCIZIO 3');
+
+function splitMe(str) {
+  return str.split(' ');
+}
+
+const string1 = 'Nel mezzo del cammin di nostra vita';
+console.log(splitMe(string1));
+
+console.log('------------------------------');
 
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
+console.log('ESERCIZIO 4');
+
+function deleteOne(str, bool) {
+  if (bool) {
+    return str.slice(1, str.length);
+  } else {
+    return str.slice(0, str.length - 1);
+  }
+}
+
+const string2 = 'Topolino';
+console.log(deleteOne(string2, false));
+
+console.log('------------------------------');
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
 
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
+console.log('ESERCIZIO 5');
+
+function onlyLetters(str) {
+  const myArr = str.split(' ');
+  const test = myArr.filter((element) => !isFinite(element));
+  return test.join(' ');
+}
+
+const string3 = 'I have 4 dogs';
+console.log(onlyLetters(string3));
+
+console.log('------------------------------');
 
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
+console.log('ESERCIZIO 6');
+
+// la funzione controlla che l'email sia di almeno 8 caratteri, tra cui ci sia una @ e successivamente compaia un . e che dopo il punto vi siano almeno due caratteri e tra la @ e il . vi siano almeno due caratteri
+function isThisAnEmail(str) {
+  if (str.length > 7) {
+    const indexAt = str.indexOf('@');
+    const indexDot = str.indexOf('.', indexAt);
+    if (indexAt && indexDot > indexAt) {
+      let lastCharacters = false;
+      let mailService = false;
+      if (str.slice(indexDot + 1).length >= 2) {
+        lastCharacters = true;
+      }
+      if (str.slice(indexAt + 1, indexDot).length >= 2) {
+        mailService = true;
+      }
+
+      if (lastCharacters && mailService) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+const email = 'gianluca@didiego.com';
+console.log(email);
+console.log(isThisAnEmail(email));
+
+// altro modo è utilizzare la regex
+console.log('------------------------------');
 
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
+console.log('ESERCIZIO 7');
+
+function whatDayIsIt() {
+  const days = [
+    'Domenica',
+    'Lunedì',
+    'Martedì',
+    'Mercoledì',
+    'Giovedì',
+    'Venerdì',
+    'Sabato',
+  ];
+  const today = new Date();
+  return days[today.getDay()];
+}
+
+console.log(whatDayIsIt());
+
+console.log('------------------------------');
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -263,16 +369,80 @@ console.log('ESERCIZIO 1');
       values: [3, 3, 4]
   }
 */
+console.log('ESERCIZIO 8');
+
+function rollTheDices(num) {
+  const extractions = [];
+  for (let i = 0; i < num; i++) {
+    extractions.push(dice());
+  }
+
+  const sum = extractions.reduce((sum, element) => sum + element);
+
+  const myObj = {
+    sum: sum,
+    values: extractions,
+  };
+
+  return myObj;
+}
+
+console.log(rollTheDices(3));
+
+console.log('------------------------------');
 
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
+console.log('ESERCIZIO 9');
+
+// Si usi la notazione ISO yyyy-mm-dd per passare la data desiderata alla funzione sotto forma di stringa
+function howManyDays(strDay) {
+  const myDay = new Date(strDay);
+  const today = new Date();
+
+  return Math.floor((today - myDay) / 1000 / 60 / 60 / 24);
+}
+
+const designedDay = '2024-11-5';
+console.log(
+  `Dalla data indicata sono trascorsi ${howManyDays(designedDay)} giorni`
+);
+
+console.log('------------------------------');
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
+console.log('ESERCIZIO 10');
+
+function isTodayMyBirthday(strDay) {
+  const myBirthday = new Date(strDay);
+  const today = new Date();
+
+  if (
+    myBirthday.getMonth() === today.getMonth() &&
+    myBirthday.getDate() === today.getDate()
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const birthday = '07-11';
+if (isTodayMyBirthday(birthday) === true) {
+  console.log('Oggi è il tuo compleanno!');
+} else {
+  console.log('Oggi non è il tuo compleanno!');
+}
+
+console.log('------------------------------');
 
 // Arrays & Oggetti
+console.log('******************************');
+console.log('** ESERCIZI ARRAYS & OGGETTI *');
+console.log('******************************');
 
 // NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
 
@@ -280,6 +450,8 @@ console.log('ESERCIZIO 1');
   Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
   in esso la proprietà chiamata come la stringa passata come secondo parametro.
 */
+console.log('ESERCIZIO 11');
+console.log('------------------------------');
 
 /* ESERCIZIO 12
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.

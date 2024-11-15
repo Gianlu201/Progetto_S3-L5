@@ -562,46 +562,177 @@ console.log('------------------------------');
 */
 console.log('ESERCIZIO 17');
 
+function searchByTitle(arr, strTitle) {
+  const myArr = [];
+  arr.forEach((movie) => {
+    if (movie.Title.indexOf(strTitle) >= 0) {
+      myArr.push(movie);
+    }
+  });
+
+  return myArr;
+}
+
+const search = 'Avengers';
+console.log(searchByTitle(movies, search));
+
 console.log('------------------------------');
 
 /* ESERCIZIO 18
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
+console.log('ESERCIZIO 18');
+
+function searchAndDivide(arr, strDivide) {
+  const moviesWith = [];
+  const moviesWithOut = [];
+
+  arr.forEach((movie) => {
+    if (movie.Title.indexOf(strDivide) >= 0) {
+      moviesWith.push(movie);
+    } else {
+      moviesWithOut.push(movie);
+    }
+  });
+
+  const myObj = {
+    match: moviesWith,
+    unmatch: moviesWithOut,
+  };
+
+  return myObj;
+}
+
+const searchWord = 'Lord';
+console.log(searchAndDivide(movies, searchWord));
+
+console.log('------------------------------');
 
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
+console.log('ESERCIZIO 19');
+
+function removeIndex(arr, index) {
+  arr.splice(index, 1);
+  return arr;
+}
+
+console.log(removeIndex(movies, 1));
+
+console.log('------------------------------');
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
+console.log('******************************');
+console.log('*****   DOM   ****************');
+console.log('******************************');
 
 /* ESERCIZIO 20
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
+console.log('ESERCIZIO 20');
+
+function getIdContainer() {
+  return document.getElementById('container');
+}
+
+const container = getIdContainer();
+console.log(container);
+
+console.log('------------------------------');
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
+console.log('ESERCIZIO 21');
+
+function getTagTd() {
+  return document.getElementsByTagName('td');
+}
+
+const arrTd = getTagTd();
+console.log(arrTd);
+
+console.log('------------------------------');
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
+console.log('ESERCIZIO 22');
+
+function showTdContent(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i].innerText);
+  }
+}
+
+showTdContent(getTagTd());
+
+console.log('------------------------------');
 
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
+console.log('ESERCIZIO 23');
+
+function setLinkBackground() {
+  const arrLink = document.querySelectorAll('a');
+  arrLink.forEach((element) => {
+    element.style.backgroundColor = 'red';
+  });
+}
+
+setLinkBackground();
+
+console.log('------------------------------');
 
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
+console.log('ESERCIZIO 24');
+
+// Variabile creata globale perchè utilizzata anche nell'esercizio successivo
+const myList = document.getElementById('myList');
+
+function addNewListElement() {
+  const myLi = document.createElement('li');
+  myLi.innerText = 'Nuovo elemento della lista';
+  myList.appendChild(myLi);
+}
+
+addNewListElement();
+
+console.log('------------------------------');
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
+console.log('ESERCIZIO 25');
+
+function deleteList() {
+  myList.innerHTML = '';
+}
+
+// deleteList();
+
+console.log('------------------------------');
 
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
+console.log('ESERCIZIO 26');
+
+function addClassTest() {
+  const arrTr = document.querySelectorAll('tr');
+  arrTr.forEach((element) => {
+    element.classList.add('test');
+  });
+}
+
+addClassTest();
+
+console.log('------------------------------');
 
 // [EXTRA] JS Avanzato
 
@@ -616,6 +747,7 @@ console.log('------------------------------');
   ***
 
 */
+console.log('ESERCIZIO 27');
 
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
